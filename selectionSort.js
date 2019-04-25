@@ -1,44 +1,22 @@
-var array = 40;
-
-var arr = [];
-    for(var index = 0 ; index < array; index++)
-    {
-        var number = Math.round(Math.random() * array);
-        arr.push(number);
-    }
-
-function swap(items, first, second)
+function selectionSort(arr)
 {
-    var temp = items[first];
-    items[first] = items[second];
-    items[second] = temp;
-}
-
-function  selectionSort(items)
-{
-    var len = items.length;
-    var min;
-
-    for(var i = 0; i < len; i++)
+    for(let i = 0; i < arr.length; i++)
     {
-        min = i;
-        for(var j = i+ 1; j<len; j++)
+        let indexOfMin = i;
+        for(let j = i + 1; j < arr.length; j++)
         {
-            if(items[j] < items[min]) {
-                min = j;
+            if(arr[j] < arr[indexOfMin])
+            {
+                indexOfMin = j;
             }
         }
 
-        if(1 !== min)
+        if(indexOfMin !== i)
         {
-            swap(items, i, min);
+            let lesser = arr[indexOfMin];
+            arr[indexOfMin] = arr[i];
+            arr[i] = lesser;
         }
     }
-    return items;
+    return arr;
 }
-
-console.log("PRE-SORT");
-console.log(arr.join(" "));
-console.log("---------------------------");
-console.log("POST-SORT");
-console.log(selectionSort(arr).join(" "));
